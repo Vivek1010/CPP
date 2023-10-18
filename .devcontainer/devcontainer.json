@@ -8,7 +8,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"Equinusocio.vsc-community-material-theme"
+				"Equinusocio.vsc-community-material-theme",
+				"ms-vscode.cpptools-extension-pack"
 			]
 		}
 	}
