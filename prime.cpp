@@ -28,7 +28,7 @@ void findPrim(int input[], size_t size, vector<int> &vec)
 int main()
 {
     // cout << "in main" << endl;
-    int input[] = {1, 2, 334, 23, 35, 7, 34, 234, 865, 3456, 9873, 5629, 43567};
+    int input[] = {1, 2, 334, 23, 35, 7, 34, 234, 865, 3456, 9873, 5629, 43567,1, 2};
     vector<int> vec{};
     findPrim(input, (sizeof(input) / sizeof(int)), vec);
     cout << "prime no are : " << endl;
