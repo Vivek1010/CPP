@@ -110,6 +110,7 @@ public:
             return;
         }
     }
+    // delete from the last
     void
     delete_last_v2()
     {
@@ -139,5 +140,22 @@ public:
         }
         delete (temp);
         len--;
+    }
+
+    // add data from the begining
+    void prepend(int data)
+    {
+        Node *temp = createNode(data);
+        if (len == 0)
+        {
+            head = tail = temp;
+            head->next = nullptr;
+        }
+        else
+        {
+            temp->next = head;
+            head = temp;
+        }
+        len++;
     }
 };
