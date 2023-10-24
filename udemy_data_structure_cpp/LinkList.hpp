@@ -103,5 +103,41 @@ public:
             }
             len--;
         }
+        // when there is no list
+        else
+        {
+            cout << "nothing to delete" << endl;
+            return;
+        }
+    }
+    void
+    delete_last_v2()
+    {
+        // when there is no linked list
+        if (len == 0)
+        {
+            cout << "Nothing to delete" << endl;
+            return;
+        }
+        Node *temp = head;
+        if (len == 1)
+        {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            // core case where list is having more than 1 node
+            Node *pre = head;
+            while (temp->next)
+            {
+                pre = temp;
+                temp = temp->next;
+            }
+            tail = pre;
+            tail->next = nullptr;
+        }
+        delete (temp);
+        len--;
     }
 };
