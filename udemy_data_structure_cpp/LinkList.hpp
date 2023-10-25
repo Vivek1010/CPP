@@ -31,6 +31,7 @@ public:
         tail = nullptr;
         len = 0;
     }
+
     ~LinkList()
     {
         while (head)
@@ -40,11 +41,13 @@ public:
             delete (temp);
         }
     }
+
     Node *
     createNode(int data)
     {
         return new Node(data);
     }
+
     void
     append(int data)
     {
@@ -72,11 +75,14 @@ public:
             cout << temp->data << " ";
             temp = temp->next;
         }
+        cout << endl;
     }
+
     int size()
     {
         return len;
     }
+
     void
     delete_last()
     {
@@ -110,6 +116,7 @@ public:
             return;
         }
     }
+
     // delete from the last
     void
     delete_last_v2()
@@ -157,5 +164,102 @@ public:
             head = temp;
         }
         len++;
+    }
+
+    void
+    delete_first()
+    {
+        if (len == 0)
+        {
+            cout << "Nothing to delete " << __FUNCTION__ << "()" << endl;
+            return;
+        }
+
+        Node *temp = head;
+        if (len == 1)
+        {
+            head = tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+        }
+        delete (temp);
+        len--;
+    }
+
+    Node *
+    get(int index)
+    {
+        Node *temp = head;
+        if (index < 0 || index > len)
+        {
+            cout << "Invalid Index" << endl;
+            return nullptr;
+        }
+        for (int i = 0; i != index; i++)
+        {
+            temp = temp->next;
+        }
+        return temp;
+    }
+
+    bool
+    set(int index, int data)
+    {
+        Node *temp = get(index);
+        if (temp)
+        {
+            temp->data = data;
+            return true;
+        }
+        return false;
+    }
+
+    void
+    insert(int index, int data)
+    {
+        if (index <= 0)
+        {
+            prepend(data);
+        }
+        else if (index >= len)
+        {
+            append(data);
+        }
+        else
+        {
+            Node *temp = get(index - 1);
+            Node *newNode = createNode(data);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            len++;
+        }
+    }
+
+    void
+    delete_node(int index)
+    {
+        if (index < 0 || index >= len)
+        {
+            cout << endl
+                 << "Invalid index " << __FUNCTION__ << endl;
+            return;
+        }
+        else if (index == 0)
+        {
+            delete_first();
+        }
+        else if (index == len - 1)
+        {
+            delete_last();
+        }
+        else
+        {
+            Node *temp = get(index - 1);
+            Node *deleteIt = temp->next;
+            temp->next = temp->next->next;
+            delete (deleteIt);
+        }
     }
 };
