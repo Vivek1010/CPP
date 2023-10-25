@@ -150,7 +150,8 @@ public:
     }
 
     // add data from the begining
-    void prepend(int data)
+    void
+    prepend(int data)
     {
         Node *temp = createNode(data);
         if (len == 0)
@@ -260,6 +261,59 @@ public:
             Node *deleteIt = temp->next;
             temp->next = temp->next->next;
             delete (deleteIt);
+            len--;
         }
+    }
+
+    void
+    inplace_reverse()
+    {
+        if (!head)
+        {
+            cout << endl
+                 << "No linked list" << endl;
+            return;
+        }
+        Node *before = nullptr;
+        Node *temp = head;
+        Node *after = temp->next;
+
+        for (int i = 0; i < len; i++)
+        {
+            after = temp->next;
+            temp->next = before;
+            before = temp;
+            temp = after;
+        }
+        Node *temp_h = head;
+        head = tail;
+        tail = temp_h;
+    }
+    Node *findMiddleNode()
+    {
+        if (!head)
+        {
+            return nullptr;
+        }
+        if (head->next == nullptr)
+        {
+            return head;
+        }
+        if (head->next->next == nullptr)
+        {
+            return head->next;
+        }
+        Node *temp = head;
+        Node *temp2 = head;
+        while (temp2 && temp2->next && temp2->next->next)
+        {
+            temp = temp->next;
+            temp2 = temp2->next->next;
+        }
+        if ((temp2->next) && (temp2->next->next == NULL))
+        {
+            return temp->next;
+        }
+        return temp;
     }
 };

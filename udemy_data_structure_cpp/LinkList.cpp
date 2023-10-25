@@ -71,5 +71,15 @@ int main()
     ll.print_list();
     ll.delete_node(3);
     ll.print_list();
+
+    cout << endl;
+    cout << "Testing inplace reverse function" << endl;
+    cout << "========================" << endl;
+    ll.insert(10, 87);
+    ll.insert(0, 97);
+    ll.print_list();
+    cout << "SIZE: " << ll.size() << endl;
+    ll.inplace_reverse();
+    ll.print_list();
     return 0;
 }
