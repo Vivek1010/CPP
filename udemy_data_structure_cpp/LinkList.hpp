@@ -289,7 +289,9 @@ public:
         head = tail;
         tail = temp_h;
     }
-    Node *findMiddleNode()
+
+    Node *
+    findMiddleNode()
     {
         if (!head)
         {
