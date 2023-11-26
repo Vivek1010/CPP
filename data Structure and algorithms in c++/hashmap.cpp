@@ -31,7 +31,18 @@ int main()
     mm.insert("x", 24);
     mm.insert("y", 25);
     mm.insert("z", 26);
-
+    cout << endl
+         << "count" << mm.getCount() << endl;
+    mm.printMap();
+    mm.remove("a");
+    mm.remove("b");
+    mm.remove("c");
+    mm.remove("d");
+    mm.remove("e");
+    mm.remove("f");
+    mm.remove("g");
+    mm.remove("h");
+    mm.remove("i");
     // mm.insert("abc", 123) ? std::cout << "insert Done" << endl : cout << "insert fail" << end;
     // mm.insert("def", 456) ? std::cout << "insert Done" << endl : cout << "insert fail" << end;
     mm.printMap();

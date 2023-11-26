@@ -49,6 +49,46 @@ public:
         }
     }
     int getCount() { return count; }
+    bool remove(K key)
+    {
+        // get the index;
+        int bucketIndex = getIndex(key, bucketSize);
+        Node<K, V> *temp = bucket[bucketIndex];
+        Node<K, V> *prev = nullptr;
+        while (temp)
+        {
+            // case >> 1 remove head
+            if (bucket[bucketIndex] == temp && temp->key == key)
+            {
+                Node<K, V> *del = temp;
+                bucket[bucketIndex] = temp->next;
+                delete del;
+                count--;
+                return true;
+            }
+
+            // case >> 2 delete last node
+            if (temp->next == nullptr && temp->key == key)
+            {
+                Node<K, V> *del = temp;
+                prev->next = nullptr;
+                delete del;
+                count--;
+                return true;
+            }
+
+            // case >> 3 inbetween node has be deleted
+            if (temp->key == key)
+            {
+                Node<K, V> *del = temp;
+                prev->next = temp->next;
+                count--;
+                delete del;
+            }
+            prev = temp;
+            temp = temp->next;
+        }
+    }
 
 private:
     // lets start bucket size with 10;
@@ -58,7 +98,7 @@ private:
     Node<K, V> **bucket;
     int count = 0;
 
-    int getIndex(string key, int size)
+    int getIndex(K key, V size)
     { /// hash code function
         /// prime no 29 is taken as base
         /// to have better distribution
@@ -80,7 +120,7 @@ private:
     /// @param value    vlaue for now
     /// @return         sccess or failure
 
-    bool insertBucket(Node<K, V> **(&p_bucket), int b_size, string key, int value)
+    bool insertBucket(Node<K, V> **(&p_bucket), int b_size, K key, V value)
     {
         // get the index;
         int bucketIndex = getIndex(key, b_size);
@@ -124,6 +164,8 @@ private:
         return true;
     }
 
+    /// @brief - when load factor gets increased from 0.7
+    ///          function get executed.
     void reHash()
     {
         cout << "rehashing started  bucketSize = " << bucketSize << endl;
