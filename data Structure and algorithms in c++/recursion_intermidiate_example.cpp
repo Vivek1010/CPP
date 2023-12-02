@@ -158,10 +158,25 @@ void saveAllPositionInArry2(int arr[], int size, int target, vector<int> &ans)
     }
 }
 
+bool ArrayPallendrom(int arr[], int start, int end)
+{
+    if (start >= end)
+    {
+        return true;
+    }
+    if (arr[start] != arr[end])
+    {
+        return false;
+    }
+    return ArrayPallendrom(arr, start + 1, end - 1);
+}
+
 int main()
 {
     int arr[]{1, 2, 2, 10, 5, 5, 5, 5, 5, 5, 1220, 10};
     int out[]{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
+    int arr2[]{1, 2, 3, 3, 2, 1};
 
     vector<int> ans;
 
@@ -192,5 +207,7 @@ int main()
     {
         cout << ans[i] << " ";
     }
+    cout << endl
+         << "ArrayPallendrom  = " << ArrayPallendrom(arr2, 0, (sizeof(arr2) / sizeof(arr2[1])) - 1);
     return 1;
 }
