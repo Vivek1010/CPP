@@ -19,15 +19,21 @@ struct Node
     }
     ~Node()
     {
-        if (this->left)
-        {
-            delete this->left;
-        }
-        if (this->left)
-        {
-            delete this->right;
-        }
-        delete this;
+        cout << " destructor Node called" << endl;
+        delete left;
+        delete right;
+        /*
+           // cout << " destructor Node called" << endl;
+            if (left)
+            {
+                delete left;
+            }
+            if (right)
+            {
+                delete right;
+            }
+            //delete this;
+        */
     }
 };
 
@@ -104,7 +110,8 @@ public:
     }
     ~bt()
     {
-        // TODO
+        cout << "destructor call" << endl;
+        delete root;
     }
     void insert(T data)
     {
@@ -273,5 +280,74 @@ public:
         {
             return find(node->right, fdata);
         }
+    }
+
+    /// @brief Binary search tree function
+    /// @param node
+    /// @return
+    T findMin(Node<T> *node)
+    {
+        if (!node)
+        {
+            cout << "NO data to search" << endl;
+            return INT_MIN;
+        }
+        if (!node->left)
+        {
+            return node->data;
+        }
+        return findMin(node->left);
+    }
+    T findMinfromBt(Node<T> *node)
+    {
+        if (!node)
+        {
+            return INT_MAX;
+        }
+        return (min(min(node->data, findMinfromBt(node->left)), findMinfromBt(node->right)));
+    }
+
+    T countLeafNode(Node<T> *node, T &count)
+    {
+        if (!node)
+        {
+            return 0;
+        }
+        if (!node->left && !node->right)
+        {
+            count++;
+        }
+        countLeafNode(node->left, count);
+        countLeafNode(node->right, count);
+        return count;
+    }
+    bool getPathHelper(Node<T> *node, T data, vector<int> &ans)
+    {
+        if (!node)
+        {
+            return false;
+        }
+        ans.push_back(node->data);
+        if (data == node->data)
+        {
+            for (int i = 0; i < ans.size(); i++)
+            {
+                cout << ans[i] << " ";
+            }
+            return true;
+        }
+        bool lh = getPathHelper(node->left, data, ans);
+        bool rh = getPathHelper(node->right, data, ans);
+
+        if (lh == false && rh == false)
+        {
+            ans.pop_back();
+        }
+        return false;
+    }
+    void getPath(Node<T> *node, T data)
+    {
+        vector<int> ans;
+        getPathHelper(root, data, ans);
     }
 };
