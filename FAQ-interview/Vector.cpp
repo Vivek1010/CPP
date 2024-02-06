@@ -9,6 +9,7 @@ int main()
     cout << v->front();
     cout << v->back();
     cout << v->at(15);
+    delete v;
     return 1;
 }
 

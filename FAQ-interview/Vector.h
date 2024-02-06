@@ -39,8 +39,8 @@ private:
         {
             temp[i] = arr[i];
         }
-        delete []arr;
-        arr = temp;
+        swap(arr,temp);
+        delete []temp;
     }
 
     int *arr;
