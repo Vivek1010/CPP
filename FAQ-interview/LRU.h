@@ -34,20 +34,22 @@ public:
     {
         if (m.find(key) == m.end())
         {
+            cout << "New Entry key " << key << " value " << value << endl;
             if (l.size() == _capacity)
             {
-                cout << "capacity full" << endl;
+                cout << "capacity is full, removing key "
+                     << l.back().second << endl;
                 int remove_key = l.back().second;
                 l.pop_back();
                 m.erase(remove_key);
             }
-            cout << "Not found. ADiing key " << key << " value " << value << endl;
+            cout << "Pushing new key " << key << " value " << value << endl;
             l.push_front({key, value});
             m[key] = l.begin();
         }
         else
         {
-            cout << " found. ADiing key " << key << "value" << value << endl;
+            cout << "Found in Cache Updating key " << key << "value " << value << endl;
             l.erase(m[key]);
             l.push_front({key, value});
             m[key] = l.begin();
