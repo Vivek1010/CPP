@@ -1,0 +1,16 @@
+
+
+  
+BCM.0> l2 cache show
+
+    0 : mac=01:80:c2:00:00:00 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+    1 : mac=01:80:c2:00:00:00 vlan=28672/0x7000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0 ProtocolPkt
+    2 : mac=01:80:c2:00:00:10 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+    3 : mac=01:80:c2:00:00:02 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+    4 : mac=01:00:0c:cc:cc:cd vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+    5 : mac=01:80:c2:00:00:03 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+    6 : mac=01:80:c2:00:00:02 vlan=28672/0x7000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0 ProtocolPkt
+    7 : mac=01:80:c2:00:00:0e vlan=28672/0x7000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0 ProtocolPkt
+    8 : mac=01:80:c2:00:00:03 vlan=28672/0x7000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0 ProtocolPkt
+  510 : mac=01:80:c2:00:00:20/ff:ff:ff:ff:ff:f0 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
+  511 : mac=01:80:c2:00:00:00/ff:ff:ff:ff:ff:f0 vlan=0/0x000 modid=0 port=0/cpu0 BPDU CPU LearnDisable lookup_class =0
