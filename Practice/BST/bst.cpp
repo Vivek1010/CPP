@@ -4,6 +4,7 @@
 #include <stack>
 #include <map>
 #include <unordered_set>
+#include <deque>
 using namespace std;
 
 struct node
@@ -442,6 +443,95 @@ void tree_level_order_traversal_recursive(node *root)
         cout << endl;
     }
 }
+void tree_reverse_spiral_traversal_using_queue(node *root)
+{
+    bool direction = 0;
+    deque<node *> d;
+    stack<int> s;
+    d.push_front(root);
+    //
+    // start pushing and poping the elements
+    //
+    while (!d.empty())
+    {
+        // calculate size of every level
+        int size = d.size();
+        while (size--)
+        {
+            if (direction == 0)
+            {
+                node *extracted = d.front();
+                d.pop_front();
+                if (extracted->left)
+                    d.push_back(extracted->left);
+                if (extracted->right)
+                    d.push_back(extracted->right);
+
+                // cout << extracted->data << " ";
+                s.push(extracted->data);
+            }
+            else
+            {
+                node *extracted = d.back();
+                d.pop_back();
+                if (extracted->right)
+                    d.push_front(extracted->right);
+                if (extracted->left)
+                    d.push_front(extracted->left);
+                // cout << extracted->data << " ";
+                s.push(extracted->data);
+            }
+        }
+        direction = 1 - direction;
+    }
+    while (!s.empty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
+    cout << endl;
+}
+
+void tree_spiral_traversal_using_queue(node *root)
+{
+    bool direction = 0;
+    deque<node *> d;
+    d.push_front(root);
+    //
+    // start pushing and poping the elements
+    //
+    while (!d.empty())
+    {
+        // calculate size of every level
+        int size = d.size();
+        while (size--)
+        {
+            if (direction == 0)
+            {
+                node *extracted = d.front();
+                d.pop_front();
+                if (extracted->left)
+                    d.push_back(extracted->left);
+                if (extracted->right)
+                    d.push_back(extracted->right);
+                cout << extracted->data << " ";
+            }
+            else
+            {
+                node *extracted = d.back();
+                d.pop_back();
+                if (extracted->right)
+                    d.push_front(extracted->right);
+                if (extracted->left)
+                    d.push_front(extracted->left);
+                cout << extracted->data << " ";
+            }
+        }
+        direction = 1 - direction;
+    }
+    cout << endl;
+}
+
 int main()
 {
     //
@@ -493,6 +583,12 @@ int main()
 
     cout << "\nLevel order traversal (recursive) of the tree 2 " << endl;
     tree_level_order_traversal_recursive(root1);
+
+    cout << "\nSpiral traversal using dqueue " << endl;
+    tree_spiral_traversal_using_queue(root);
+
+    cout << "\nReverse spiral traversal using dqueue and stack " << endl;
+    tree_reverse_spiral_traversal_using_queue(root);
 
     delete (root);
     delete (root1);
