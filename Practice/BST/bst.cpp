@@ -58,7 +58,7 @@ void add_node(node *root, vector<int> value, vector<char> direction)
                 // create a new node
                 //
                 temp->left = create_new_node(value[i]);
-                cout << "added on L " << temp->left->data << "\n";
+                // cout << "added on L " << temp->left->data << "\n";
             }
             temp = temp->left;
         }
@@ -81,7 +81,7 @@ void add_node(node *root, vector<int> value, vector<char> direction)
                 // create a new node
                 //
                 temp->right = create_new_node(value[i]);
-                cout << "added on R " << temp->right->data << "\n";
+                // cout << "added on R " << temp->right->data << "\n";
             }
             temp = temp->right;
         }
@@ -109,9 +109,13 @@ int tree_max(node *root)
 }
 int tree_height(node *root)
 {
+    /*
     if (!root || (!root->left && !root->right))
         return 0;
-    return (max(tree_height(root->left), tree_height(root->right))) + 1;
+    */
+    if (root)
+        return (max(tree_height(root->left), tree_height(root->right))) + 1;
+    return 0;
 }
 int tree_count_node(node *root)
 {
@@ -394,7 +398,7 @@ void tree_preorder_optimised(node *root)
     {
         //
         // push every node while going left
-        //  
+        //
         while (runner)
         {
             cout << runner->data << " ";
@@ -412,6 +416,31 @@ void tree_preorder_optimised(node *root)
         runner = runner->right;
     }
     cout << endl;
+}
+void helper_print_level_order_traversal_recursive(node *root, int level)
+{
+    if (level == 0)
+    {
+        cout << root->data << "  ";
+    }
+    else if (level)
+    {
+        if (root->left)
+            helper_print_level_order_traversal_recursive(root->left, level - 1);
+        if (root->right)
+            helper_print_level_order_traversal_recursive(root->right, level - 1);
+    }
+}
+void tree_level_order_traversal_recursive(node *root)
+{
+    int h = tree_height(root);
+    cout << "height of the tree " << h << endl;
+    for (int i = 0; i < h; i++)
+    {
+        cout << "level -> " << i << ":  ";
+        helper_print_level_order_traversal_recursive(root, i);
+        cout << endl;
+    }
 }
 int main()
 {
@@ -458,6 +487,12 @@ int main()
 
     cout << "\nPreorder traversal (optimised )of the tree iterative " << endl;
     tree_preorder_optimised(root);
+
+    cout << "\nLevel order traversal (recursive) of the tree 1 " << endl;
+    tree_level_order_traversal_recursive(root);
+
+    cout << "\nLevel order traversal (recursive) of the tree 2 " << endl;
+    tree_level_order_traversal_recursive(root1);
 
     delete (root);
     delete (root1);
